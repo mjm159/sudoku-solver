@@ -18,7 +18,12 @@ For the design architecture of the code itself, the following steps will be take
 1) Create a SudokuPuzzle class skeleton
   a) Flesh out parsing puzzle from string into 2D list representation
   b) Implement Backtrack algorithm
-  c) Implement simple 'print pretty'
+    - implement check for end of grid
+    - implement next_position
+    - implement check if grid_is_valid
+    - compile together pieces to create Backtrack
+  c) Wrap Backtrack in 'solve' function
+  d) Implement simple 'print pretty'
 2) Implement command line interface
 E.C.) Above and beyond tasks (if there's time)
   a) Implement Flask wrapper for sudoku solver
