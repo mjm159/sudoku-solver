@@ -83,10 +83,11 @@ class SudokuPuzzle:
         valid = True
         temp = self.solution[row][col]
         self.solution[row][col] = 'x'
-        # offsets for generating cube
+        # Offsets for generating cube
         r_off = row - row % 3
         c_off = col - col % 3
         cube = []
+        # Representing Sudoku sub-box as a list
         for i in range(r_off, r_off + 3):
             for j in range(c_off, c_off + 3):
                 cube.append(self.solution[i][j])
@@ -103,17 +104,23 @@ class SudokuPuzzle:
         return valid
 
     def backtrack(self, row, col):
-        '''Solve puzzle and return solution
+        '''Run backtrack against self.solution
         '''
         if self.end_of_grid(row, col):
             return True
         for num in range(1, 10):
-            self.solution[row][col] = num
+            self.solution[row][col] = str(num)
             if self.grid_is_valid(row, col):
-                if self.backtrack(self.next_position(row, col)):
+                new_row, new_col = self.next_position(row, col)
+                if self.backtrack(new_row, new_col):
                     return True
         self.solution[row][col] = '0'
         return False
+
+    def solve(self):
+        '''Initiate and backtrack method
+        '''
+        pass
 
 if __name__ == '__main__':
     pass

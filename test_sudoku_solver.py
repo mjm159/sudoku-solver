@@ -16,11 +16,11 @@ Puzzle 1
 '''
 
 puzzle_1_solution = '''348267951
-571943627
+571943628
 269185374
 697351482
 123874596
-854729137
+854629137
 415798263
 982436715
 736512849
@@ -152,15 +152,19 @@ class TestSudokuPuzzle:
         
     def test_backtrack_1(self):
         puzzle = ss.SudokuPuzzle()
-        puzzle.set_puzzle(puzzle_1_solution)
+        puzzle.set_puzzle(puzzle_1)
         initial_pos = puzzle.next_position(0, 0)
         puzzle.backtrack(initial_pos[0], initial_pos[1])
         assert puzzle_1_solution == puzzle.puzzle_to_string(puzzle.solution)
 
     def test_backtrack_2(self):
         puzzle = ss.SudokuPuzzle()
-        puzzle.set_puzzle(puzzle_2_solution)
+        puzzle.set_puzzle(puzzle_2)
         initial_pos = puzzle.next_position(0, 0)
         puzzle.backtrack(initial_pos[0], initial_pos[1])
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.solution)
+
+    def test_solve_1(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
 
