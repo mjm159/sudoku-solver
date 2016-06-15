@@ -15,21 +15,20 @@ pip3 install -r requirements.txt
 This project will be built out in a Test Driven Development format (i.e. unit tests first, followed by the functional code).  
 
 For the design architecture of the code itself, the following steps will be taken:  
-1. Create a SudokuPuzzle class skeleton  
-2. Flesh out parsing puzzle from string into 2D list representation  
-3. Implement Backtrack algorithm  
-4. implement check for end of grid    
-5. implement next_position  
-6. implement check if grid_is_valid  
-7. compile together pieces to create Backtrack  
-8. Wrap Backtrack in 'solve' function  
-9. Implement simple 'print pretty'  
-10. Implement command line interface  
+- [x] Create a SudokuPuzzle class skeleton  
+- [x] Flesh out parsing puzzle from string into 2D list representation  
+- [x] implement check for end of grid    
+- [x] implement next_position  
+- [x] implement check if grid_is_valid  
+- [x] cobble together pieces to create Backtrack  
+- [ ] Wrap Backtrack in 'solve' function  
+- [x] Implement simple 'print pretty'  
+- [ ] Implement command line interface  
 
 Above and beyond tasks (if there's time):
-  - Implement Flask wrapper for sudoku solver
-  - Include performance evaluation
-  - Better formating with 'print pretty'
+- [ ] Implement Flask wrapper for sudoku solver
+- [ ] Include performance evaluation
+- [ ] Better formating with 'print pretty'
 
 ### Algorithm Choice
 After researching various sudoku solving algorithms, I decided to proceed with the Backtrack algorithm. Here is my logic behind this decision:
