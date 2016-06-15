@@ -11,6 +11,19 @@ pip3 install -r requirements.txt
 
 ### Usage
 
+### Design
+This project will be built out in a Test Driven Development format (i.e. unit tests first, followed by the functional code).  
+
+For the design architecture of the code itself, the following steps will be taken:
+1) Create a SudokuPuzzle class skeleton
+  a) Flesh out parsing puzzle from string into 2D list representation
+  b) Implement Backtrack algorithm
+  c) Implement simple 'print pretty'
+2) Implement command line interface
+E.C.) Above and beyond tasks (if there's time)
+  a) Implement Flask wrapper for sudoku solver
+  b) Include performance evaluation
+  c) Better formating with 'print pretty'
 
 ### Algorithm Choice
 After researching various sudoku solving algorithms, I decided to proceed with the Backtrack algorithm. Here is my logic behind this decision:
