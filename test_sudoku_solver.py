@@ -129,13 +129,27 @@ class TestSudokuPuzzle:
     def test_grid_is_valid_1_True(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
-        assert puzzle.grid_is_valid() == True
+        puzzle.solution[0][3] = '2'
+        assert puzzle.grid_is_valid(0, 3) == True
 
     def test_grid_is_valid_2_bad_row(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[0][8] = '4'
-        assert puzzle.grid_is_valid() == False
+        assert puzzle.grid_is_valid(0, 8) == False
+
+    def test_grid_is_valid_3_bad_column(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        puzzle.solution[2][1] = '4'
+        assert puzzle.grid_is_valid(2, 1) == False
+
+    def test_grid_is_valid_4_bad_boc(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        puzzle.solution[6][0] = '3'
+        assert puzzle.grid_is_valid(6, 0) == False
+        
 
 
 #    def test_backtrack_1(self):

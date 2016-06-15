@@ -67,11 +67,27 @@ class SudokuPuzzle:
                 break
         return row, col
 
-    def grid_is_valid(self):
+    def grid_is_valid(self, row, col):
         '''Return boolean if puzzle grid is valid
         '''
         valid = True
-        
+        temp = self.solution[row][col]
+        self.solution[row][col] = 'x'
+        # offsets for generating cube
+        r_off = row - row % 3
+        c_off = col - col % 3
+        cube = []
+        for i in range(r_off, r_off + 3):
+            for j in range(c_off, c_off + 3):
+                cube.append(self.solution[i][j])
+        # Row check
+        if temp in self.solution[row]:
+            valid = False
+        elif temp in [self.solution[x][col] for x in range(9)]:
+            valid = False
+        elif temp in cube:
+            valid = False
+        self.solution[row][col] = temp
         return valid
 
     def backtrack(self):
