@@ -15,8 +15,7 @@ Puzzle 1
 030000040 
 '''
 
-puzzle_1_solution = '''
-348267951
+puzzle_1_solution = '''348267951
 571943627
 269185374
 697351482
@@ -38,6 +37,17 @@ Puzzle 2
 010008053
 900040000
 000000800
+'''
+
+puzzle_2_solution = '''124986735
+867435912
+395712684
+478359261
+259861347
+631274598
+712698453
+983547126
+546123879
 '''
 
 puzzle_3 = '''
@@ -72,3 +82,26 @@ class TestSudokuPuzzle:
         for i in temp[1:]:
             expected_answer.append(list(i.strip()))
         assert expected_answer == puzzle.puzzle
+
+    def test_set_puzzle_no_name(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1_solution)
+        temp = puzzle_1_solution.strip().split('\n')
+        expected_answer = []
+        for i in temp:
+            expected_answer.append(list(i.strip()))
+        assert expected_answer == puzzle.puzzle
+
+    def test_puzzle_to_string_1(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1_solution)
+        assert puzzle_1_solution == puzzle.puzzle_to_string(puzzle.puzzle)
+
+    def test_puzzle_to_string_2(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_2_solution)
+        assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.puzzle)
+
+    def test_backtrack_1(self):
+        pass
+
