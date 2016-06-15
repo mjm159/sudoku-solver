@@ -102,13 +102,41 @@ class TestSudokuPuzzle:
         puzzle.set_puzzle(puzzle_2_solution)
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.puzzle)
 
-    def test_end_of_grid_1(self):
+    def test_end_of_grid_1_False(self):
         puzzle = ss.SudokuPuzzle()
         assert puzzle.end_of_grid(1, 5) == False
 
-    def test_end_of_grid_2(self):
+    def test_end_of_grid_2_True(self):
         puzzle = ss.SudokuPuzzle()
         assert puzzle.end_of_grid(9, 0) == True
+
+    def test_next_position_1(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        assert puzzle.next_position(0, 0) == (0, 0)
+
+    def test_next_position_2(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_3)
+        assert puzzle.next_position(2, 1) == (2, 4)
+
+    def test_next_position_3(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_3)
+        puzzle.puzzle[8][8] = '1'
+        assert puzzle.next_position(8, 8) == (9, 0)
+
+    def test_grid_is_valid_1_True(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        assert puzzle.grid_is_valid() == True
+
+    def test_grid_is_valid_2_bad_row(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        puzzle.solution[0][8] = '4'
+        assert puzzle.grid_is_valid() == False
+
 
 #    def test_backtrack_1(self):
 #        puzzle = ss.SudokuPuzzle()

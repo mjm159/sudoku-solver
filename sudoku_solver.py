@@ -48,16 +48,35 @@ class SudokuPuzzle:
         else:
             index = 0
         self.puzzle = [list(line.strip()) for line in lines[index:]]
+        self.solution = self.puzzle
 
     def end_of_grid(self, row, col):
         '''Returns True if at end of grid
         '''
         return True if row > 8 else False
 
+    def next_position(self, row, col):
+        '''Returns position of next open cell
+        '''
+        while self.solution[row][col] != '0':
+            col += 1
+            if col > 8:
+                row += 1
+                col = 0
+            if row > 8:
+                break
+        return row, col
+
+    def grid_is_valid(self):
+        '''Return boolean if puzzle grid is valid
+        '''
+        valid = True
+        
+        return valid
+
     def backtrack(self):
         '''Solve puzzle and return solution
         '''
-
         return puzzle_1_solution
 
 if __name__ == '__main__':
