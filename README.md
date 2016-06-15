@@ -1,5 +1,16 @@
 # sudoku-solver
 
+### Setup
+```bash
+git clone git@github.com:mjm159/sudoku-solver.git
+cd sudoku-solver
+virtualenv env
+source env/bin/activate
+pip3 install -r requirements.txt
+```
+
+### Usage
+
 
 ### Algorithm Choice
 After researching various sudoku solving algorithms, I decided to proceed with the Backtrack algorithm. Here is my logic behind this decision:
