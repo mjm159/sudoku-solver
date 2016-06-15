@@ -102,6 +102,21 @@ class TestSudokuPuzzle:
         puzzle.set_puzzle(puzzle_2_solution)
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.puzzle)
 
-    def test_backtrack_1(self):
-        pass
+    def test_end_of_grid_1(self):
+        puzzle = ss.SudokuPuzzle()
+        assert puzzle.end_of_grid(1, 5) == False
+
+    def test_end_of_grid_2(self):
+        puzzle = ss.SudokuPuzzle()
+        assert puzzle.end_of_grid(9, 0) == True
+
+#    def test_backtrack_1(self):
+#        puzzle = ss.SudokuPuzzle()
+#        puzzle.set_puzzle(puzzle_1_solution)
+#        assert puzzle_1_solution == puzzle.backtrack()
+#
+#    def test_backtrack_2(self):
+#        puzzle = ss.SudokuPuzzle()
+#        puzzle.set_puzzle(puzzle_2_solution)
+#        assert puzzle_2_solution == puzzle.backtrack()
 

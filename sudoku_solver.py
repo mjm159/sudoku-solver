@@ -49,11 +49,16 @@ class SudokuPuzzle:
             index = 0
         self.puzzle = [list(line.strip()) for line in lines[index:]]
 
+    def end_of_grid(self, row, col):
+        '''Returns True if at end of grid
+        '''
+        return True if row > 8 else False
 
     def backtrack(self):
         '''Solve puzzle and return solution
         '''
-        pass
+
+        return puzzle_1_solution
 
 if __name__ == '__main__':
     pass
