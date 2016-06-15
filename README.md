@@ -32,9 +32,9 @@ Above and beyond tasks (if there's time):
 
 ### Algorithm Choice
 After researching various sudoku solving algorithms, I decided to proceed with the Backtrack algorithm. Here is my logic behind this decision:
-- Implementing an algorithm to mimic how an average person would solve a sudoku by [crosshatching](http://www.bigfishgames.com/blog/how-to-solve-sudoku-puzzles-quickly-and-reliably/) though simpler to implement, breaks down on harder puzzles
-- Implementing an stochastic algorithm, though it would have a faster runtime, is significantly more difficult to implememnt.
-- Backtrack is reliable, even if a little slow compared to fancier algorithms and it's a hell of a lot faster than brute force.
+- Brute force is a classic technique, but severely lacks in performance.
+- Stochastic algorithms can be faster, but are significantly more difficult to implememnt.
+- Backtrack is reliable, and is considered slower when compared to fancier algorithms, but it's a hell of a lot faster than brute force.
 Source for psuedocode: [here](https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/)  
 
 ### References  
