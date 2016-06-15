@@ -1,5 +1,15 @@
 import sys
 
+puzzle_1_solution = '''348267951
+571943627
+269185374
+697351482
+123874596
+854729137
+415798263
+982436715
+736512849
+'''
 
 class SudokuPuzzle:
     '''Representation of a Sudoku puzzle
@@ -83,17 +93,27 @@ class SudokuPuzzle:
         # Row check
         if temp in self.solution[row]:
             valid = False
+        # Column check
         elif temp in [self.solution[x][col] for x in range(9)]:
             valid = False
+        # Box check
         elif temp in cube:
             valid = False
         self.solution[row][col] = temp
         return valid
 
-    def backtrack(self):
+    def backtrack(self, row, col):
         '''Solve puzzle and return solution
         '''
-        return puzzle_1_solution
+        if self.end_of_grid(row, col):
+            return True
+        for num in range(1, 10):
+            self.solution[row][col] = num
+            if self.grid_is_valid(row, col):
+                if self.backtrack(self.next_position(row, col)):
+                    return True
+        self.solution[row][col] = '0'
+        return False
 
 if __name__ == '__main__':
     pass

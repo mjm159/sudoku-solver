@@ -144,21 +144,23 @@ class TestSudokuPuzzle:
         puzzle.solution[2][1] = '4'
         assert puzzle.grid_is_valid(2, 1) == False
 
-    def test_grid_is_valid_4_bad_boc(self):
+    def test_grid_is_valid_4_bad_box(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[6][0] = '3'
         assert puzzle.grid_is_valid(6, 0) == False
         
+    def test_backtrack_1(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1_solution)
+        initial_pos = puzzle.next_position(0, 0)
+        puzzle.backtrack(initial_pos[0], initial_pos[1])
+        assert puzzle_1_solution == puzzle.puzzle_to_string(puzzle.solution)
 
-
-#    def test_backtrack_1(self):
-#        puzzle = ss.SudokuPuzzle()
-#        puzzle.set_puzzle(puzzle_1_solution)
-#        assert puzzle_1_solution == puzzle.backtrack()
-#
-#    def test_backtrack_2(self):
-#        puzzle = ss.SudokuPuzzle()
-#        puzzle.set_puzzle(puzzle_2_solution)
-#        assert puzzle_2_solution == puzzle.backtrack()
+    def test_backtrack_2(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_2_solution)
+        initial_pos = puzzle.next_position(0, 0)
+        puzzle.backtrack(initial_pos[0], initial_pos[1])
+        assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.solution)
 
