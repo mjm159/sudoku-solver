@@ -19,10 +19,37 @@ class SudokuPuzzle:
         self.puzzle = None
         self.solution = None
 
-    def print(self):
+    def insert_line(self, pos):
+        if (pos + 1) % 3 == 0 and pos + 1 < 9:
+            return True
+        else:
+            return False
+
+    def print_pretty(self, puzzle):
         '''Print puzzle in a formated grid
         '''
-        pass
+        for i, row in enumerate(puzzle):
+           line = ''
+           for j, cell in enumerate(row):
+              line = ''.join([line, cell.center(3)])
+              if self.insert_line(j):
+                  line = ''.join([line, '|'])
+           print(line)
+           if self.insert_line(i):
+              print('-' * len(line))
+        print('\n')
+
+    def print_solution(self):
+        '''Print solution via print_pretty
+        '''
+        print('{} Solution'.format(self.name))
+        self.print_pretty(self.solution)
+
+    def print_puzzle(self):
+        '''Print puzzle via print_pretty
+        '''
+        print(self.name)
+        self.print_pretty(self.puzzle)
 
     def puzzle_to_string(self, puzzle):
         '''Convert a 2D puzzle list to a string
@@ -175,5 +202,14 @@ if __name__ == '__main__':
                 pzl.print_solution()
         except IndexError:
             print('Error: Missing command line argument after \'-f\'')
+    elif '-p' in sys.argv:
+        try:
+            filename = sys.argv[sys.argv.index('-p')+1]
+            puzzles = parse_for_puzzles(filename)
+            pzl = SudokuPuzzle()
+            pzl.set_puzzle(puzzles[0])
+            pzl.print_puzzle()
+        except IndexError:
+            print('Error: Missing command line argument after \'-p\'')
     else:
         print('For help use the \'-h\' command line argument')
