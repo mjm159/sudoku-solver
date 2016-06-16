@@ -4,7 +4,7 @@
 ```bash
 git clone git@github.com:mjm159/sudoku-solver.git
 cd sudoku-solver
-virtualenv env
+virtualenv -p python3 env
 source env/bin/activate
 pip3 install -r requirements.txt
 chmod +x sudoku_solver.py
