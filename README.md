@@ -38,6 +38,7 @@ Interaction:
 ```python
 import requests
 file_name = 'puzzle_1.txt'
+url = 'http://0.0.0.0:5000/sudoku/solve'
 
 with open(file_name, 'r') as f:
     data = {'text': f.read()}
