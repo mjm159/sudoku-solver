@@ -9,6 +9,7 @@ Last Revised: June 15th, 2016
 '''
 
 import sys
+from timeit import default_timer as timer
 
 
 class SudokuPuzzle:
@@ -18,6 +19,7 @@ class SudokuPuzzle:
         self.name = None
         self.puzzle = None
         self.solution = None
+        self.execution_time = None
 
     def insert_line(self, pos):
         if (pos + 1) % 3 == 0 and pos + 1 < 9:
@@ -31,7 +33,8 @@ class SudokuPuzzle:
         for i, row in enumerate(puzzle):
            line = ''
            for j, cell in enumerate(row):
-              line = ''.join([line, cell.center(3)])
+              val = '.' if cell == '0' else cell
+              line = ''.join([line, val.center(3)])
               if self.insert_line(j):
                   line = ''.join([line, '|'])
            print(line)
@@ -43,6 +46,7 @@ class SudokuPuzzle:
         '''Print solution via print_pretty
         '''
         print('{} Solution'.format(self.name))
+        print('Execution Time: {:10f} Sec'.format(self.execution_time))
         self.print_pretty(self.solution)
 
     def print_puzzle(self):
@@ -80,12 +84,12 @@ class SudokuPuzzle:
         '''
         lines = puzzle_string.strip().split('\n')
         if 'Puzzle' in lines[0]:
-            self.name = lines[0]
+            self.name = lines[0].strip()
             index = 1
         else:
             index = 0
         self.puzzle = [list(line.strip()) for line in lines[index:]]
-        self.solution = list(self.puzzle)
+        self.solution = [list(line) for line in self.puzzle]
 
     def end_of_grid(self, row, col):
         '''Returns True if at end of grid
@@ -158,13 +162,16 @@ class SudokuPuzzle:
     def solve(self):
         '''Initiate and backtrack method
         '''
+        start = timer()
         result = self.backtrack(0, 0)
         if not result:
-            self.solution = self.puzzle
+            self.solution = [list(line) for line in self.puzzle]
             for i, row in enumerate(self.solution):
                 for j, cell in enumerate(row):
                     if cell == '0':
                         self.solution[i][j] = 'x'
+        end = timer()
+        self.execution_time = end - start
         return self.puzzle_to_string(self.solution)
 
 
@@ -194,21 +201,22 @@ if __name__ == '__main__':
             print('\n')
     elif '-f' in sys.argv:
         try:
-            filename = sys.argv[sys.argv.index('-f')+1]
+            filename = sys.argv[sys.argv.index('-f') + 1]
             for puzzle in parse_for_puzzles(filename):
                 pzl = SudokuPuzzle()
                 pzl.set_puzzle(puzzle)
                 pzl.solve()
+                pzl.print_puzzle()
                 pzl.print_solution()
         except IndexError:
             print('Error: Missing command line argument after \'-f\'')
     elif '-p' in sys.argv:
         try:
-            filename = sys.argv[sys.argv.index('-p')+1]
-            puzzles = parse_for_puzzles(filename)
-            pzl = SudokuPuzzle()
-            pzl.set_puzzle(puzzles[0])
-            pzl.print_puzzle()
+            filename = sys.argv[sys.argv.index('-p') + 1]
+            for puzzle in parse_for_puzzles(filename):
+                pzl = SudokuPuzzle()
+                pzl.set_puzzle(puzzle)
+                pzl.print_puzzle()
         except IndexError:
             print('Error: Missing command line argument after \'-p\'')
     else:

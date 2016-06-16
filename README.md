@@ -7,9 +7,26 @@ cd sudoku-solver
 virtualenv env
 source env/bin/activate
 pip3 install -r requirements.txt
+chmod +x sudoku_solver.py
+```  
+#### Testing
+```bash
+py.test -v test_sudoku_solver.py
 ```
 
 ### Usage
+Get help:  
+```bash
+./sudoku_solver.py -h
+```  
+Print nice version of puzzle (pre-solution)
+```bash
+./sudoku_solver.py -p puzzle_1.txt
+```  
+Solve and print solution along with original puzzle
+```bash
+./sudoku_solver.py -f puzzle_1.txt
+```
 
 ### Design
 This project will be built out in a Test Driven Development format (i.e. unit tests first, followed by the functional code).  
@@ -23,12 +40,12 @@ For the design architecture of the code itself, the following steps will be take
 - [x] cobble together pieces to create Backtrack  
 - [x] Wrap Backtrack in 'solve' function  
 - [x] Implement simple 'print pretty'  
-- [ ] Implement command line interface  
+- [x] Implement command line interface  
 
 Above and beyond tasks (if there's time):
 - [ ] Implement Flask wrapper for sudoku solver
-- [ ] Include performance evaluation
-- [ ] Better formating with 'print pretty'
+- [x] Include performance evaluation
+- [x] Better formating with 'print pretty'
 
 ### Algorithm Choice
 After researching various sudoku solving algorithms, I decided to proceed with the Backtrack algorithm. Here is my logic behind this decision:
