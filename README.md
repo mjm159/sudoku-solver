@@ -16,6 +16,7 @@ py.test -v test_sudoku_solver.py
 ```
 
 ### Usage
+##### Command Line
 Get help:  
 ```bash
 ./sudoku_solver.py -h
@@ -27,6 +28,22 @@ Print nice version of puzzle (pre-solution)
 Solve and print solution along with original puzzle
 ```bash
 ./sudoku_solver.py -f puzzle_1.txt
+```  
+##### Flask
+Setup:  
+```bash
+python sudoku_flask.py
+```  
+Interaction:
+```python
+import requests
+file_name = 'puzzle_1.txt'
+
+with open(file_name, 'r') as f:
+    data = {'text': f.read()}
+resp = requests.post(url, data=data)
+print(resp.status_code)
+print(resp.text)
 ```
 
 ### Design
@@ -45,7 +62,7 @@ For the design architecture of the code itself, the following steps will be take
 - [x] Implement command line interface  
 
 Above and beyond tasks (if there's time):
-- [ ] Implement Flask wrapper for sudoku solver
+- [x] Implement Flask wrapper for sudoku solver
 - [x] Include performance evaluation
 - [x] Better formating with 'print pretty'
 
@@ -57,12 +74,13 @@ After researching various sudoku solving algorithms, I decided to proceed with t
 Source for psuedocode: [here](https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/)  
 
 ### Notes  
-Originally I had the intention of implementing a RESTful API as a fun "Extra Credit" wrapper around the solution, which factored in my decision to put the solution into a class. Ultimately I ran out of time for implementing a Flask wrapper, but felt the Object Oriented design was solid and decided to keep it. Later, I might come back and implement that wrapper just for fun.  
+~Originally I had the intention of implementing a RESTful API as a fun "Extra Credit" wrapper around the solution, which factored in my decision to put the solution into a class. Ultimately I ran out of time for implementing a Flask wrapper, but felt the Object Oriented design was solid and decided to keep it. Later, I might come back and implement that wrapper just for fun.~  
 
 Thanks for taking the time to review my code.  
  - Michael
 
 ### References  
+[Sudoku Solutions](http://www.sudoku-solutions.com/)
 [Sudoku Solving Algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)  
 [Sudoku Problem Solving](http://www.academia.edu/6207354/Sudoku_Problem_Solving_using_Backtracking_Constraint_Propagation_Stochastic_Hill_Climbing_and_Artificial_Bee_Colony_Algorithms-METU_2013)  
 [STOCHASTIC OPTIMIZATION APPROACHES FOR SOLVING SUDOKU](https://arxiv.org/pdf/0805.0697.pdf)  
