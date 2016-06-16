@@ -132,9 +132,6 @@ class SudokuPuzzle:
         '''Initiate and backtrack method
         '''
         result = self.backtrack(0, 0)
-        print(result)
-        print(self.solution)
-        print(self.puzzle)
         if not result:
             self.solution = self.puzzle
             for i, row in enumerate(self.solution):

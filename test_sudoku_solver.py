@@ -88,7 +88,7 @@ xxxxxxxxx
 '''
 
 
-class TestSudokuPuzzle:
+class TestSetPuzzle:
 
     def test_set_puzzle_1(self):
         puzzle = ss.SudokuPuzzle()
@@ -117,6 +117,9 @@ class TestSudokuPuzzle:
             expected_answer.append(list(i.strip()))
         assert expected_answer == puzzle.puzzle
 
+
+class TestPuzzleToString:
+
     def test_puzzle_to_string_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1_solution)
@@ -127,6 +130,9 @@ class TestSudokuPuzzle:
         puzzle.set_puzzle(puzzle_2_solution)
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.puzzle)
 
+    
+class TestEndOfGrid:
+
     def test_end_of_grid_1_False(self):
         puzzle = ss.SudokuPuzzle()
         assert puzzle.end_of_grid(1, 5) == False
@@ -134,6 +140,9 @@ class TestSudokuPuzzle:
     def test_end_of_grid_2_True(self):
         puzzle = ss.SudokuPuzzle()
         assert puzzle.end_of_grid(9, 0) == True
+
+    
+class TestNextPosition:
 
     def test_next_position_1(self):
         puzzle = ss.SudokuPuzzle()
@@ -150,6 +159,9 @@ class TestSudokuPuzzle:
         puzzle.set_puzzle(puzzle_3)
         puzzle.puzzle[8][8] = '1'
         assert puzzle.next_position(8, 8) == (9, 0)
+
+    
+class TestCellIsValid:
 
     def test_cell_is_valid_1_True(self):
         puzzle = ss.SudokuPuzzle()
@@ -175,6 +187,9 @@ class TestSudokuPuzzle:
         puzzle.solution[6][0] = '3'
         assert puzzle.cell_is_valid(6, 0) == False
     
+    
+class TestGridIsValid:
+
     def test_grid_is_valid_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
@@ -185,6 +200,9 @@ class TestSudokuPuzzle:
         puzzle.set_puzzle(bad_puzzle)
         assert puzzle.grid_is_valid() == False
         
+    
+class TestBacktrack:
+
     def test_backtrack_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
@@ -199,6 +217,9 @@ class TestSudokuPuzzle:
         puzzle.backtrack(row, col)
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.solution)
 
+    
+class TestSolve:
+
     def test_solve_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
@@ -210,11 +231,8 @@ class TestSudokuPuzzle:
         assert puzzle.solve() == puzzle_2_solution
 
     def test_solve_3_bad_puzzle(self):
-        def false_backtrack(x, y):
-            return False
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(bad_puzzle)
-        #puzzle.backtrack = false_backtrack
         assert puzzle.solve() == bad_puzzle_solution
 
 
