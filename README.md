@@ -8,8 +8,9 @@ virtualenv env
 source env/bin/activate
 pip3 install -r requirements.txt
 chmod +x sudoku_solver.py
-```  
-#### Testing
+```
+
+### Testing
 ```bash
 py.test -v test_sudoku_solver.py
 ```
@@ -29,13 +30,14 @@ Solve and print solution along with original puzzle
 ```
 
 ### Design
-This project will be built out in a Test Driven Development format (i.e. unit tests first, followed by the functional code).  
+This project will be built out using the Test Driven Development paradigm (i.e. unit tests first, followed by the functional code).  
 
 For the design architecture of the code itself, the following steps will be taken:  
 - [x] Create a SudokuPuzzle class skeleton  
 - [x] Flesh out parsing puzzle from string into 2D list representation  
 - [x] implement check for end of grid    
 - [x] implement next_position  
+- [x] implement check if cell_is_valid
 - [x] implement check if grid_is_valid  
 - [x] cobble together pieces to create Backtrack  
 - [x] Wrap Backtrack in 'solve' function  
@@ -53,6 +55,12 @@ After researching various sudoku solving algorithms, I decided to proceed with t
 - Stochastic algorithms can be faster, but are significantly more difficult to implememnt.
 - Backtrack is reliable, and is considered slower when compared to fancier algorithms, but it's a hell of a lot faster than brute force.
 Source for psuedocode: [here](https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/)  
+
+### Notes  
+Originally I had the intention of implementing a RESTful API as a fun "Extra Credit" wrapper around the solution, which factored in my decision to put the solution into a class. Ultimately I ran out of time for implementing a Flask wrapper, but felt the Object Oriented design was solid and decided to keep it. Later, I might come back and implement that wrapper just for fun.  
+
+Thanks for taking the time to review my code.  
+ - Michael
 
 ### References  
 [Sudoku Solving Algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)  
