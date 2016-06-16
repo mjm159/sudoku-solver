@@ -21,7 +21,7 @@ For the design architecture of the code itself, the following steps will be take
 - [x] implement next_position  
 - [x] implement check if grid_is_valid  
 - [x] cobble together pieces to create Backtrack  
-- [ ] Wrap Backtrack in 'solve' function  
+- [x] Wrap Backtrack in 'solve' function  
 - [x] Implement simple 'print pretty'  
 - [ ] Implement command line interface  
 

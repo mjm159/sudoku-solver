@@ -1,11 +1,11 @@
 import sys
 
 puzzle_1_solution = '''348267951
-571943627
+571943628
 269185374
 697351482
 123874596
-854729137
+854629137
 415798263
 982436715
 736512849
@@ -58,7 +58,7 @@ class SudokuPuzzle:
         else:
             index = 0
         self.puzzle = [list(line.strip()) for line in lines[index:]]
-        self.solution = self.puzzle
+        self.solution = list(self.puzzle)
 
     def end_of_grid(self, row, col):
         '''Returns True if at end of grid
@@ -77,7 +77,17 @@ class SudokuPuzzle:
                 break
         return row, col
 
-    def grid_is_valid(self, row, col):
+    def grid_is_valid(self):
+        '''Return boolean if puzzle is valid
+        '''
+        for i, row in enumerate(self.solution):
+            for j, cell in enumerate(row):
+                if cell != '0':
+                    if not self.cell_is_valid(i, j):
+                        return False
+        return True
+
+    def cell_is_valid(self, row, col):
         '''Return boolean if puzzle grid is valid
         '''
         valid = True
@@ -110,7 +120,8 @@ class SudokuPuzzle:
             return True
         for num in range(1, 10):
             self.solution[row][col] = str(num)
-            if self.grid_is_valid(row, col):
+            #if self.grid_is_valid(row, col):
+            if self.grid_is_valid():
                 new_row, new_col = self.next_position(row, col)
                 if self.backtrack(new_row, new_col):
                     return True
@@ -120,7 +131,17 @@ class SudokuPuzzle:
     def solve(self):
         '''Initiate and backtrack method
         '''
-        pass
+        result = self.backtrack(0, 0)
+        print(result)
+        print(self.solution)
+        print(self.puzzle)
+        if not result:
+            self.solution = self.puzzle
+            for i, row in enumerate(self.solution):
+                for j, cell in enumerate(row):
+                    if cell == '0':
+                        self.solution[i][j] = 'x'
+        return self.puzzle_to_string(self.solution)
 
 if __name__ == '__main__':
     pass

@@ -63,6 +63,31 @@ Puzzle 3
 000000000  
 '''
 
+bad_puzzle = '''
+Bad Puzzle
+000000050
+123456789
+000000000
+456789123
+000000000
+789123454
+000000000
+612578934
+000000000
+'''
+
+bad_puzzle_solution = '''xxxxxxx5x
+123456789
+xxxxxxxxx
+456789123
+xxxxxxxxx
+789123454
+xxxxxxxxx
+612578934
+xxxxxxxxx
+'''
+
+
 class TestSudokuPuzzle:
 
     def test_set_puzzle_1(self):
@@ -126,45 +151,70 @@ class TestSudokuPuzzle:
         puzzle.puzzle[8][8] = '1'
         assert puzzle.next_position(8, 8) == (9, 0)
 
-    def test_grid_is_valid_1_True(self):
+    def test_cell_is_valid_1_True(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[0][3] = '2'
-        assert puzzle.grid_is_valid(0, 3) == True
+        assert puzzle.cell_is_valid(0, 3) == True
 
-    def test_grid_is_valid_2_bad_row(self):
+    def test_cell_is_valid_2_bad_row(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[0][8] = '4'
-        assert puzzle.grid_is_valid(0, 8) == False
+        assert puzzle.cell_is_valid(0, 8) == False
 
-    def test_grid_is_valid_3_bad_column(self):
+    def test_cell_is_valid_3_bad_column(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[2][1] = '4'
-        assert puzzle.grid_is_valid(2, 1) == False
+        assert puzzle.cell_is_valid(2, 1) == False
 
-    def test_grid_is_valid_4_bad_box(self):
+    def test_cell_is_valid_4_bad_box(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
         puzzle.solution[6][0] = '3'
-        assert puzzle.grid_is_valid(6, 0) == False
+        assert puzzle.cell_is_valid(6, 0) == False
+    
+    def test_grid_is_valid_1(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_1)
+        assert puzzle.grid_is_valid() == True
+
+    def test_grid_is_valid_2(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(bad_puzzle)
+        assert puzzle.grid_is_valid() == False
         
     def test_backtrack_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
-        initial_pos = puzzle.next_position(0, 0)
-        puzzle.backtrack(initial_pos[0], initial_pos[1])
+        row, col = puzzle.next_position(0, 0)
+        puzzle.backtrack(row, col)
         assert puzzle_1_solution == puzzle.puzzle_to_string(puzzle.solution)
 
     def test_backtrack_2(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_2)
-        initial_pos = puzzle.next_position(0, 0)
-        puzzle.backtrack(initial_pos[0], initial_pos[1])
+        row, col = puzzle.next_position(0, 0)
+        puzzle.backtrack(row, col)
         assert puzzle_2_solution == puzzle.puzzle_to_string(puzzle.solution)
 
     def test_solve_1(self):
         puzzle = ss.SudokuPuzzle()
         puzzle.set_puzzle(puzzle_1)
+        assert puzzle.solve() == puzzle_1_solution
+
+    def test_solve_2(self):
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(puzzle_2)
+        assert puzzle.solve() == puzzle_2_solution
+
+    def test_solve_3_bad_puzzle(self):
+        def false_backtrack(x, y):
+            return False
+        puzzle = ss.SudokuPuzzle()
+        puzzle.set_puzzle(bad_puzzle)
+        #puzzle.backtrack = false_backtrack
+        assert puzzle.solve() == bad_puzzle_solution
+
 
