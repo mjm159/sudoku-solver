@@ -74,13 +74,13 @@ After researching various sudoku solving algorithms, I decided to proceed with t
 Source for psuedocode: [here](https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/)  
 
 ### Notes  
-~Originally I had the intention of implementing a RESTful API as a fun "Extra Credit" wrapper around the solution, which factored in my decision to put the solution into a class. Ultimately I ran out of time for implementing a Flask wrapper, but felt the Object Oriented design was solid and decided to keep it. Later, I might come back and implement that wrapper just for fun.~  
+I choose to build the solution in an object oriented fashion because I liked how nicely I could encapsulate multiple puzzes. Also I felt that it'd make life pretty easy when throwing in a Flask wrapper for a simple RESTful API.  
 
 Thanks for taking the time to review my code.  
  - Michael
 
 ### References  
-[Sudoku Solutions](http://www.sudoku-solutions.com/)
+[Sudoku Solutions](http://www.sudoku-solutions.com/)  
 [Sudoku Solving Algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)  
 [Sudoku Problem Solving](http://www.academia.edu/6207354/Sudoku_Problem_Solving_using_Backtracking_Constraint_Propagation_Stochastic_Hill_Climbing_and_Artificial_Bee_Colony_Algorithms-METU_2013)  
 [STOCHASTIC OPTIMIZATION APPROACHES FOR SOLVING SUDOKU](https://arxiv.org/pdf/0805.0697.pdf)  
