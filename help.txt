@@ -1,0 +1,22 @@
+NAME
+    sudoku_solver.py
+
+SYNOPSIS
+    ./sudoku_solver.py [OPTIONS] -f [FILE]
+
+DESCRIPTION
+    sudoku_solver.py parses a text file with (a) sudoku puzzle(s), then solves it and returns the solution.
+
+OPTIONS
+    Generic Program Information
+        -h, --help
+            Print a usage message briefly summarizing these command-line options
+    
+    Input File
+        -f
+            Parse file from filename following '-f' and return solution
+
+NOTES
+    This help page is inspired by the grep man page.
+
+    The fact that the author decided to mimic the  help page of grep is proof of a warped sense of humor.

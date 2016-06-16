@@ -1,15 +1,15 @@
+#!/usr/bin/python3
+'''
+sudoku_solver.py
+
+Solves sudoku puzzles.
+
+Author: Michael Malocha
+Last Revised: June 15th, 2016
+'''
+
 import sys
 
-puzzle_1_solution = '''348267951
-571943628
-269185374
-697351482
-123874596
-854629137
-415798263
-982436715
-736512849
-'''
 
 class SudokuPuzzle:
     '''Representation of a Sudoku puzzle
@@ -141,4 +141,14 @@ class SudokuPuzzle:
         return self.puzzle_to_string(self.solution)
 
 if __name__ == '__main__':
-    pass
+    if '-h' in sys.argv or '--help' in sys.argv:
+        with open('help.txt', 'r') as f:
+            print('\n')
+            for line in f.readlines():
+                print(line.rstrip())
+            print('\n')
+    elif '-f' in sys.argv:
+        try:
+            print(sys.argv[sys.argv.index('-f')+1])
+        except Exception:
+            print('Error: Missing command line argument after \'-f\'')
