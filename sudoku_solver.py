@@ -140,6 +140,24 @@ class SudokuPuzzle:
                         self.solution[i][j] = 'x'
         return self.puzzle_to_string(self.solution)
 
+
+def parse_for_puzzles(filename):
+    '''Parse a text file for puzzles and return array of strings
+    '''
+    puzzles = []
+    with open(filename) as f:
+        puzz_buff = ''
+        count = 0
+        for line in f.readlines():
+            count += 1
+            puzz_buff = ''.join([puzz_buff, line])
+            if count == 10:
+                puzzles.append(puzz_buff)
+                puzz_buff = ''
+                count = 0
+    return puzzles
+
+
 if __name__ == '__main__':
     if '-h' in sys.argv or '--help' in sys.argv:
         with open('help.txt', 'r') as f:
@@ -149,6 +167,13 @@ if __name__ == '__main__':
             print('\n')
     elif '-f' in sys.argv:
         try:
-            print(sys.argv[sys.argv.index('-f')+1])
-        except Exception:
+            filename = sys.argv[sys.argv.index('-f')+1]
+            for puzzle in parse_for_puzzles(filename):
+                pzl = SudokuPuzzle()
+                pzl.set_puzzle(puzzle)
+                pzl.solve()
+                pzl.print_solution()
+        except IndexError:
             print('Error: Missing command line argument after \'-f\'')
+    else:
+        print('For help use the \'-h\' command line argument')
