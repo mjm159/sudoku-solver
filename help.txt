@@ -2,7 +2,8 @@ NAME
     sudoku_solver.py
 
 SYNOPSIS
-    ./sudoku_solver.py [OPTIONS] -f [FILE]
+    ./sudoku_solver.py -f [FILE]
+    ./sudoku_solver.py -p [FILE]
 
 DESCRIPTION
     sudoku_solver.py parses a text file with (a) sudoku puzzle(s), then solves it and returns the solution.
@@ -12,9 +13,13 @@ OPTIONS
         -h, --help
             Print a usage message briefly summarizing these command-line options
     
-    Input File
+    Find Solution
         -f
             Parse file from filename following '-f' and return solution
+
+    Get Information
+        -p
+            Parse file and print sudoku puzzles in 'nice' format
 
 NOTES
     This help page is inspired by the grep man page.
